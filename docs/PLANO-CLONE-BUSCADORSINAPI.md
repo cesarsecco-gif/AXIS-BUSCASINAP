@@ -45,6 +45,19 @@ Ou seja: **não cheguei à tela de login**, então a dificuldade não foi o logi
 acesso de rede. Não tenho (e não devo pedir) sua senha. A varredura real precisa ser feita
 **no seu computador**, com o REA, no seu Chrome logado — roteiro na seção 4.
 
+### 1.3 Confirmado pela captura de tela da tela de login (enviada pelo usuário)
+
+- Cabeçalho azul (`~#2F6699`) com ícone de lupa, título **"Buscador SINAPI"**, selos **EXPERT** (contorno) e **BETA** (amarelo), link externo **"Site"**.
+- Card "ACESSO / Entrar": login **sem senha, por código enviado ao e-mail** (OTP / *magic code*).
+- Checkbox obrigatório de aceite de **Termos** e **Política de Privacidade** do Beta.
+- Seletor **"Manter conectado por"** (ex.: 7 dias) → duração da sessão escolhida pelo usuário.
+- Link **"Já tenho um código"** (tela separada para digitar o código).
+- **"Ainda não tem acesso? Peça o seu"** → acesso por **convite/lista de espera** (beta fechado).
+- Rodapé: "Conta individual e nominal" + e-mail de contato → licença por usuário.
+
+Implicação para o nosso app: Auth.js com provedor de **e-mail (código OTP)** via SMTP/Resend,
+tabela de convites/lista de espera e `maxAge` da sessão configurável (1/7/30 dias).
+
 Por isso, o escopo funcional abaixo é a **hipótese** de um buscador SINAPI típico
 (o que produtos do gênero, como Orçamentor/OrçaFascio, oferecem). Ele deve ser
 **confirmado/ajustado** com o relatório do REA (Fase 0).
@@ -175,7 +188,7 @@ que atualiza a seção 5 deste plano.
 3. Detalhe da composição: sintético + **analítico** (insumos, coeficientes, custo unitário, % mão de obra).
 4. Histórico de preço por mês do item.
 5. Exportação **Excel (XLSX)** e **PDF**.
-6. Login (e-mail/senha; Google opcional) e limite de buscas no plano gratuito.
+6. Login **por código enviado ao e-mail** (sem senha), aceite de termos, "manter conectado por N dias", acesso por convite/lista de espera.
 
 **Fase seguinte**
 7. Orçamentos salvos: itens, quantidades, **BDI**, encargos, totais, **curva ABC**.
